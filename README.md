@@ -1,2 +1,2 @@
 # TOFEPNtopology
-./preparetopology.sh tof-epn-local
+./preparetopology.sh tof-epn-cosmics
