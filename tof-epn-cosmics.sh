@@ -19,6 +19,7 @@ ARGS_ALL="--session default --severity $SEVERITY --shm-segment-size $SHMSIZE -b"
 CTF_DICT="--ctf-dict /home/epn/odc/files/ctf_dictionary.root"
 
 PROXY_INSPEC="x:TOF/CRAWDATA;dd:FLP/DISTSUBTIMEFRAME/0"
+PROXY_OUTSPEC="calclus:TOF/INFOCALCLUS;cosmics:TOF/INFOCOSMICS"
 NTHREADS=1
 
 # Output directory for the CTF, to write to the current dir., remove `--output-dir  $CTFOUT` from o2-ctf-writer-workflow or set to `CTFOUT=\"""\"`
@@ -30,5 +31,5 @@ o2-dpl-raw-proxy ${ARGS_ALL} --dataspec "${PROXY_INSPEC}" --channel-config "${TF
 --pipeline "tof-compressed-decoder:${NTHREADS},TOFClusterer:${NTHREADS},tof-entropy-encoder:${NTHREADS}" \
 | o2-ctf-writer-workflow ${ARGS_ALL} ${GRP_PATH} --onlyDet TOF  --output-dir  $CTFOUT  \
 | o2-qc ${ARGS_ALL} --config json://${PWD}/qc-full.json --local --host epn \
-| o2-dpl-output-proxy ${ARGS_ALL} --channel-config ${calibration_node} --dataspec calclus:TOF/INFOCALCLUS,cosmics:TOF/INFOCOSMICS \
+| o2-dpl-output-proxy ${ARGS_ALL} --channel-config ${OUT_CHANNEL} --dataspec ${PROXY_OUTSPEC} \
 | o2-dpl-run ${ARGS_ALL} --dds # option instead iof run to export DDS xml file
