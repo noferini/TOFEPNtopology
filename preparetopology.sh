@@ -7,7 +7,7 @@ if [ "x${Nepn}" == "x" ]; then
 fi
 
 # $3 = calibration node
-./$1.sh $3 |grep -v INFO >$1.xml
+./$1.sh $3 |grep -v "\[INFO\]" >$1.xml
 
 odc-topo --dpl $1.xml --ndpl ${Nepn} --dd /home/epn/odc/dd-data.xml --ndd ${Nepn} -o $1-${Nepn}epn.xml
 
