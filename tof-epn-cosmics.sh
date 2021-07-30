@@ -22,7 +22,7 @@ CTFOUT="/home/epn/odc/tofscripts/debug/out"
 o2-dpl-raw-proxy ${ARGS_ALL} --dataspec "${PROXY_INSPEC}" --channel-config "${TFB_CHANNEL}" \
 | o2-tof-reco-workflow --input-type raw --output-type clusters,ctf ${ARGS_ALL} ${CTF_DICT} ${GRP_PATH} --disable-root-output --calib-cluster --cluster-time-window 5000 --cosmics \
 --pipeline "tof-compressed-decoder:${NTHREADS},TOFClusterer:${NTHREADS},tof-entropy-encoder:${NTHREADS}" \
-| o2-tof-cluster-calib-workflow ${ARGS_ALL} --cosmics --output-dir  $CTFOUT \
 | o2-ctf-writer-workflow ${ARGS_ALL} ${GRP_PATH} --onlyDet TOF  --output-dir  $CTFOUT  \
 | o2-qc ${ARGS_ALL} --config json://${PWD}/qc-full.json --local --host epn \
+| o2-dpl-output-proxy ${ARGS_ALL} --channel-config "name=downstream,method=connect,address=tcp://${calibration_node},type=push,transport=zeromq" --dataspec calclus:TOF/INFOCALCLUS,cosmics:TOF/INFOCOSMICS \
 | o2-dpl-run ${ARGS_ALL} --dds # option instead iof run to export DDS xml file
