@@ -24,7 +24,8 @@ NTHREADS=1
 
 # Output directory for the CTF, to write to the current dir., remove `--output-dir  $CTFOUT` from o2-ctf-writer-workflow or set to `CTFOUT=\"""\"`
 # The directory must exist
-CTFOUT="/home/epn/odc/tofscripts/debug/out"
+#CTFOUT="/home/epn/odc/tofscripts/debug/out"
+CTFOUT="/home/eosbuffer/tofctf"
 
 o2-dpl-raw-proxy ${ARGS_ALL} --dataspec "${PROXY_INSPEC}" --channel-config "${TFB_CHANNEL}" \
 | o2-tof-reco-workflow --input-type raw --output-type clusters,ctf ${ARGS_ALL} ${CTF_DICT} ${GRP_PATH} --disable-root-output --calib-cluster --cluster-time-window 5000 --cosmics \
