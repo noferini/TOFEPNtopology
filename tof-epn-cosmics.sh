@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
+export calibration_node=$1
 set -u
 
-export calibration_node=$1
-if [ "x${Nepn}" == "x" ]; then
+if [ "x${calibration_node}" == "x" ]; then
   export calibration_node="epn003:30453"
 fi
 
 # DO NOT MODIFY
 TFB_CHANNEL="name=readout-proxy,type=pull,method=connect,address=ipc://@tf-builder-pipe-0,transport=shmem,rateLogging=10"
+OUT_CHANNEL="name=downstream,method=connect,address=tcp://${calibration_node},type=push,transport=zeromq"
 
 ## TOF-EPN-LOCAL
 SHMSIZE=$(( 64 << 30 )) # 64 GiB
@@ -29,5 +30,5 @@ o2-dpl-raw-proxy ${ARGS_ALL} --dataspec "${PROXY_INSPEC}" --channel-config "${TF
 --pipeline "tof-compressed-decoder:${NTHREADS},TOFClusterer:${NTHREADS},tof-entropy-encoder:${NTHREADS}" \
 | o2-ctf-writer-workflow ${ARGS_ALL} ${GRP_PATH} --onlyDet TOF  --output-dir  $CTFOUT  \
 | o2-qc ${ARGS_ALL} --config json://${PWD}/qc-full.json --local --host epn \
-| o2-dpl-output-proxy ${ARGS_ALL} --channel-config "name=downstream,method=connect,address=tcp://${calibration_node},type=push,transport=zeromq" --dataspec calclus:TOF/INFOCALCLUS,cosmics:TOF/INFOCOSMICS \
+| o2-dpl-output-proxy ${ARGS_ALL} --channel-config ${calibration_node} --dataspec calclus:TOF/INFOCALCLUS,cosmics:TOF/INFOCOSMICS \
 | o2-dpl-run ${ARGS_ALL} --dds # option instead iof run to export DDS xml file
