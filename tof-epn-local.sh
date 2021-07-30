@@ -1,12 +1,3 @@
-#!/bin/bash
-module load DataDistribution ODC QualityControl O2
-
-./$1.sh |grep -v INFO >$1.xml
-
-odc-topo --dpl $1.xml --ndpl 5 --dd /home/epn/odc/dd-data.xml --ndd 5 -o $1-5epn.xml
-
-rm $1.xml
-[epn@epn003 debug]$ cat tof-epn-local.sh
 #!/usr/bin/env bash
 set -u
 
