@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 set -u
 
+export calibration_node=$1
+if [ "x${Nepn}" == "x" ]; then
+  export calibration_node="epn003:30453"
+fi
+
 # DO NOT MODIFY
 TFB_CHANNEL="name=readout-proxy,type=pull,method=connect,address=ipc://@tf-builder-pipe-0,transport=shmem,rateLogging=10"
 
