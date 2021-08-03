@@ -60,7 +60,7 @@
         "localMachines": [
           "epn"
         ],
-        "remoteMachine": "alio2-cr1-qc01.cern.ch",
+        "remoteMachine": "alio2-cr1-qc03.cern.ch",
         "remotePort": "47708",
         "mergingMode": "delta",
         "localControl": "odc"
