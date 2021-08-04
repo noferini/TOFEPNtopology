@@ -22,7 +22,7 @@ ARGS_ALL="--session default --severity $SEVERITY --shm-segment-size $SHMSIZE -b"
 
 CTF_DICT="--ctf-dict /home/epn/odc/files/ctf_dictionary.root"
 
-PROXY_INSPEC="calclus:TOF/INFOCALCLUS;cosmics:TOF/INFOCOSMICS"
+PROXY_INSPEC="calclus:TOF/INFOCALCLUS/0;cosmics:TOF/INFOCOSMICS/0;trkcos:TOF/INFOTRACKCOS/0;trksiz:TOF/INFOTRACKSIZE/0"
 
 # Output directory for the CTF, to write to the current dir., remove `--output-dir  $CTFOUT` from o2-ctf-writer-workflow or set to `CTFOUT=\"""\"`
 # The directory must exist
