@@ -2,6 +2,8 @@
 export calibration_port=$1
 set -u
 
+module load O2
+
 if [ "x${calibration_port}" == "x" ]; then
   export calibration_port="30453"
 fi
