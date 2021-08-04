@@ -29,6 +29,9 @@ PROXY_INSPEC="calclus:TOF/INFOCALCLUS/0;cosmics:TOF/INFOCOSMICS/0;trkcos:TOF/INF
 #CTFOUT="/home/epn/odc/tofscripts/debug/out"
 CTFOUT="/home/eosbuffer/tofctf"
 
+# clean dir from previous runs
+rm tofclusCalInfo.root
+
 o2-dpl-raw-proxy --dataspec ${PROXY_INSPEC} --channel-config ${IN_CHANNEL}"name=readout-proxy,type=pull,method=bind,address=tcp://localhost:30453,rateLogging=1,transport=zeromq" \
 | o2-tof-cluster-calib-workflow ${ARGS_ALL} --cosmics \
 | o2-dpl-run ${ARGS_ALL} # --dds # option instead iof run to export DDS xml file
