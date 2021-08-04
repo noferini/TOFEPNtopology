@@ -11,7 +11,7 @@ fi
 export calibration_node="localhost:$calibration_port"
 
 # DO NOT MODIFY
-IN_CHANNEL="name=downstream,method=bind,address=tcp://${calibration_node},type=pull,transport=zeromq,rateLogging=1"
+IN_CHANNEL="name=readout-proxy,method=bind,address=tcp://${calibration_node},type=pull,transport=zeromq,rateLogging=1"
 
 
 ## TOF-EPN-LOCAL
