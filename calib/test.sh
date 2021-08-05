@@ -12,11 +12,11 @@ OUT_CHANNEL="name=downstream,method=connect,address=tcp://${calibration_node},ty
 echo ${OUT_CHANNEL}
 
 ## TOF-EPN-LOCAL
-SHMSIZE=400000000
-#SHMSIZE=$(( 64 << 30 )) # 64 GiB
+#SHMSIZE=400000000
+SHMSIZE=$(( 64 << 30 )) # 64 GiB
 SEVERITY="info"
-GRP_PATH=""
-#GRP_PATH="--configKeyValues NameConf.mDirGRP=/home/epn/odc/files;NameConf.mDirGeom=/home/epn/odc/files"
+#GRP_PATH=""
+GRP_PATH="--configKeyValues NameConf.mDirGRP=/home/epn/odc/files;NameConf.mDirGeom=/home/epn/odc/files"
 ARGS_ALL="--session default --severity $SEVERITY --shm-segment-size $SHMSIZE -b"
 
 PROXY_OUTSPEC="dd:FLP/DISTSUBTIMEFRAME;calclus:TOF/INFOCALCLUS;cosmics:TOF/INFOCOSMICS;trkcos:TOF/INFOTRACKCOS;trksiz:TOF/INFOTRACKSIZE"

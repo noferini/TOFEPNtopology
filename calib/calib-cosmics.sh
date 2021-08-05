@@ -15,11 +15,11 @@ IN_CHANNEL="name=readout-proxy,method=bind,address=tcp://${calibration_node},typ
 
 
 ## TOF-EPN-LOCAL
-SHMSIZE=400000000
-#SHMSIZE=$(( 64 << 30 )) # 64 GiB
+#SHMSIZE=400000000
+SHMSIZE=$(( 64 << 30 )) # 64 GiB
 SEVERITY="info"
-GRP_PATH=""
-#GRP_PATH="--configKeyValues NameConf.mDirGRP=/home/epn/odc/files;NameConf.mDirGeom=/home/epn/odc/files"
+#GRP_PATH=""
+GRP_PATH="--configKeyValues NameConf.mDirGRP=/home/epn/odc/files;NameConf.mDirGeom=/home/epn/odc/files"
 ARGS_ALL="--session default --severity $SEVERITY --shm-segment-size $SHMSIZE -b"
 
 PROXY_INSPEC="dd:FLP/DISTSUBTIMEFRAME/0;calclus:TOF/INFOCALCLUS/0;cosmics:TOF/INFOCOSMICS/0;trkcos:TOF/INFOTRACKCOS/0;trksiz:TOF/INFOTRACKSIZE/0"
@@ -27,7 +27,7 @@ PROXY_INSPEC="dd:FLP/DISTSUBTIMEFRAME/0;calclus:TOF/INFOCALCLUS/0;cosmics:TOF/IN
 # clean dir from previous runs
 rm tofclusCalInfo.root
 
-o2-dpl-raw-proxy --dataspec ${PROXY_INSPEC} --channel-config ${IN_CHANNEL}"name=readout-proxy,type=pull,method=bind,address=tcp://localhost:30453,rateLogging=1,transport=zeromq" \
+o2-dpl-raw-proxy ${ARGS_ALL} --dataspec ${PROXY_INSPEC} --channel-config ${IN_CHANNEL}"name=readout-proxy,type=pull,method=bind,address=tcp://localhost:30453,rateLogging=1,transport=zeromq" \
 | o2-tof-cluster-calib-workflow ${ARGS_ALL} \
 | o2-dpl-run ${ARGS_ALL} # --dds # option instead iof run to export DDS xml file
 
