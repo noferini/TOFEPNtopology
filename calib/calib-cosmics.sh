@@ -2,7 +2,7 @@
 export calibration_port=$1
 set -u
 
-module load O2
+module load QualityControl
 
 if [ "x${calibration_port}" == "x" ]; then
   export calibration_port="30453"
