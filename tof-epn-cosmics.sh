@@ -20,7 +20,7 @@ CTF_DICT="--ctf-dict /home/epn/odc/files/ctf_dictionary.root"
 
 PROXY_INSPEC="x:TOF/CRAWDATA;dd:FLP/DISTSUBTIMEFRAME/0"
 PROXY_OUTSPEC="dd:FLP/DISTSUBTIMEFRAME;calclus:TOF/INFOCALCLUS;cosmics:TOF/INFOCOSMICS;trkcos:TOF/INFOTRACKCOS;trksiz:TOF/INFOTRACKSIZE"
-NTHREADS=1
+NTHREADS=2
 
 # Output directory for the CTF, to write to the current dir., remove `--output-dir  $CTFOUT` from o2-ctf-writer-workflow or set to `CTFOUT=\"""\"`
 # The directory must exist
