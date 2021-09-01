@@ -3,7 +3,7 @@ export calibration_node=$1
 set -u
 
 if [ "x${calibration_node}" == "x" ]; then
-  export calibration_node="epn003:30453"
+  export calibration_node="epn003-ib:30453"
 fi
 
 # DO NOT MODIFY
