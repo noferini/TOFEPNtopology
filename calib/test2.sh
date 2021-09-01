@@ -8,8 +8,6 @@ if [ "x${calibration_node}" == "x" ]; then
   export calibration_node="epn003:30453"
 fi
 
-export calibration_node="localhost:30453"
-
 # DO NOT MODIFY
 OUT_CHANNEL="name=downstream,method=connect,address=tcp://${calibration_node},type=push,transport=zeromq,rateLogging=1"
 
@@ -25,6 +23,6 @@ ARGS_ALL="--session default --severity $SEVERITY --shm-segment-size $SHMSIZE -b"
 
 PROXY_OUTSPEC="calclus:TOF/INFOCALCLUS;cosmics:TOF/INFOCOSMICS"
 
-o2-tof-cluscal-reader-workflow --rate 44 ${ARGS_ALL} --cosmics --tof-calclus-infile tofclusCalInfoOr.root \
+o2-tof-cluscal-reader-workflow --rate 440 ${ARGS_ALL} --cosmics --tof-calclus-infile tofclusCalInfoOr.root \
 | o2-dpl-output-proxy ${ARGS_ALL} --channel-config ${OUT_CHANNEL} --dataspec ${PROXY_OUTSPEC} \
 | o2-dpl-run ${ARGS_ALL} #--dds # option instead iof run to export DDS xml file

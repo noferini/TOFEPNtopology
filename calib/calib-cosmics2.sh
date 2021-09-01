@@ -8,7 +8,7 @@ if [ "x${calibration_port}" == "x" ]; then
   export calibration_port="30453"
 fi
 
-export calibration_node="localhost:$calibration_port"
+export calibration_node="epn003:$calibration_port"
 
 # DO NOT MODIFY
 IN_CHANNEL="name=readout-proxy,method=bind,address=tcp://${calibration_node},type=pull,transport=zeromq,rateLogging=1"
