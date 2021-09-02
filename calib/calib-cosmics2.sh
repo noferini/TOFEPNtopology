@@ -27,7 +27,7 @@ PROXY_INSPEC="dd:FLP/DISTSUBTIMEFRAME/0;calclus:TOF/INFOCALCLUS/0;cosmics:TOF/IN
 # clean dir from previous runs
 rm tofclusCalInfo.root
 
-o2-dpl-raw-proxy ${ARGS_ALL} --dataspec ${PROXY_INSPEC} --channel-config ${IN_CHANNEL}"name=readout-proxy,type=pull,method=bind,address=tcp://localhost:30453,rateLogging=1,transport=zeromq" \
+o2-dpl-raw-proxy ${ARGS_ALL} --dataspec ${PROXY_INSPEC} --channel-config ${IN_CHANNEL} \
 | o2-calibration-tof-calib-workflow --cosmics --do-channel-offset --min-entries 50 ${ARGS_ALL} \
 | o2-calibration-ccdb-populator-workflow ${ARGS_ALL} \
 | o2-tof-cluster-calib-workflow ${ARGS_ALL} \

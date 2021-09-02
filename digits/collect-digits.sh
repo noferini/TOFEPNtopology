@@ -22,16 +22,13 @@ SEVERITY="info"
 GRP_PATH="--configKeyValues NameConf.mDirGRP=/home/epn/odc/files;NameConf.mDirGeom=/home/epn/odc/files"
 ARGS_ALL="--session default --severity $SEVERITY --shm-segment-size $SHMSIZE -b"
 
-PROXY_INSPEC="dd:FLP/DISTSUBTIMEFRAME/0;calclus:TOF/INFOCALCLUS/0;cosmics:TOF/INFOCOSMICS/0;trkcos:TOF/INFOTRACKCOS/0;trksiz:TOF/INFOTRACKSIZE/0"
+PROXY_INSPEC="dd:FLP/DISTSUBTIMEFRAME/0;digits:TOF/DIGITS/0"
 
 # clean dir from previous runs
 rm tofclusCalInfo.root
 
 o2-dpl-raw-proxy ${ARGS_ALL} --dataspec ${PROXY_INSPEC} --channel-config ${IN_CHANNEL} \
-| o2-calibration-tof-calib-workflow --cosmics --do-channel-offset --min-entries 1000 ${ARGS_ALL} \
-| o2-calibration-ccdb-populator-workflow ${ARGS_ALL} \
-| o2-tof-cluster-calib-workflow ${ARGS_ALL} --cosmics \
-| o2-qc ${ARGS_ALL} --config json://${PWD}/tofcosmics.json \
+| o2-tof-digit-writer-workflow ${ARGS_ALL} --ntf 2640 \
 | o2-dpl-run ${ARGS_ALL} # --dds # option instead iof run to export DDS xml file
 
 #| o2-qc ${ARGS_ALL} --config ${QUALITYCONTROL_ROOT}/etc/tofcosmics.json \

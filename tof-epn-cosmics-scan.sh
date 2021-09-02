@@ -19,7 +19,7 @@ ARGS_ALL="--session default --severity $SEVERITY --shm-segment-size $SHMSIZE -b"
 CTF_DICT="--ctf-dict /home/epn/odc/files/ctf_dictionary.root"
 
 PROXY_INSPEC="x:TOF/CRAWDATA;dd:FLP/DISTSUBTIMEFRAME/0"
-PROXY_OUTSPEC="dd:FLP/DISTSUBTIMEFRAME;calclus:TOF/INFOCALCLUS;cosmics:TOF/INFOCOSMICS;trkcos:TOF/INFOTRACKCOS;trksiz:TOF/INFOTRACKSIZE"
+PROXY_OUTSPEC="dd:FLP/DISTSUBTIMEFRAME;digits:TOF/DIGITS"
 NTHREADS=2
 
 # Output directory for the CTF, to write to the current dir., remove `--output-dir  $CTFOUT` from o2-ctf-writer-workflow or set to `CTFOUT=\"""\"`
@@ -29,6 +29,6 @@ CTFOUT="/home/epn/odc/tofscripts/debug/out"
 
 o2-dpl-raw-proxy ${ARGS_ALL} --dataspec "${PROXY_INSPEC}" --channel-config "${TFB_CHANNEL}" \
 | o2-tof-reco-workflow --input-type raw --output-type digits ${ARGS_ALL} ${CTF_DICT} ${GRP_PATH} --disable-root-output \
-| o2-tof-digit-writer-workflow ${ARGS_ALL} --ntf 2640 --output-base-name  $CTFOUT/tofdigits \
 | o2-qc ${ARGS_ALL} --config json://${PWD}/qc-full.json --local --host epn \
+| o2-dpl-output-proxy ${ARGS_ALL} --channel-config ${OUT_CHANNEL} --dataspec ${PROXY_OUTSPEC} \
 | o2-dpl-run ${ARGS_ALL} --dds # option instead iof run to export DDS xml file
