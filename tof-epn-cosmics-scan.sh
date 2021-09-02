@@ -16,7 +16,8 @@ SEVERITY="info"
 GRP_PATH="--configKeyValues NameConf.mDirGRP=/home/epn/odc/files;NameConf.mDirGeom=/home/epn/odc/files"
 ARGS_ALL="--session default --severity $SEVERITY --shm-segment-size $SHMSIZE -b"
 
-CTF_DICT="--ctf-dict /home/epn/odc/files/ctf_dictionary.root"
+#CTF_DICT="--ctf-dict /home/epn/odc/files/ctf_dictionary.root"
+CTF_DICT=""
 
 PROXY_INSPEC="x:TOF/CRAWDATA;dd:FLP/DISTSUBTIMEFRAME/0"
 PROXY_OUTSPEC="dd:FLP/DISTSUBTIMEFRAME;digits:TOF/DIGITS"
