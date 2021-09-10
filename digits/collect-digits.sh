@@ -28,8 +28,8 @@ PROXY_INSPEC="dd:FLP/DISTSUBTIMEFRAME/0;dig:TOF/DIGITS/0;head:TOF/DIGITHEADER/0;
 rm tofdigit*
 
 o2-dpl-raw-proxy ${ARGS_ALL} --dataspec ${PROXY_INSPEC} --channel-config ${IN_CHANNEL} \
-| o2-tof-digit-writer-workflow ${ARGS_ALL}  --ntf 44 \
---pipeline "tof-digit-splitter-writer:1" \
+| o2-tof-digit-writer-workflow ${ARGS_ALL}  --ntf 2640 \
+--pipeline "tof-digit-splitter-writer:16" \
 | o2-dpl-run ${ARGS_ALL} # --dds # option instead iof run to export DDS xml file
 
 #| o2-qc ${ARGS_ALL} --config ${QUALITYCONTROL_ROOT}/etc/tofcosmics.json \
