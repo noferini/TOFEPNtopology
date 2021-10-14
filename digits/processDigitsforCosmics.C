@@ -131,14 +131,14 @@ void processDigitsforCosmics(const char *filedir="./",int ithread=-1,int ifile=-
 
   int nevusedMask = 0;
   
-  for (int iev = 0; iev < nev; iev+=100) {    
+  for (int iev = 0; iev < nev; iev+=1) {    
     tree_tof->GetEntry(iev);
     nevusedMask++;
     for(int i=0; i < digits.size(); i++){
       hdig->Fill(digits[i].getChannel());
     }
   }
-  double duration = 0.0022*(nevusedMask+1);
+  double duration = 0.011*(nevusedMask+1);
   hdig->Scale(1./duration);
 
 

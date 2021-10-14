@@ -2,7 +2,7 @@
 export calibration_port=$1
 set -u
 
-module load QualityControl
+module load O2PDPSuite
 
 if [ "x${calibration_port}" == "x" ]; then
   export calibration_port="30453"

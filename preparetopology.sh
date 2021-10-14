@@ -1,5 +1,5 @@
 #!/bin/bash
-module load DataDistribution ODC QualityControl
+module load O2PDPSuite
 
 export Nepn=$2
 if [ "x${Nepn}" == "x" ]; then

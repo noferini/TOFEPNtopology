@@ -2,7 +2,7 @@
 export calibration_node=$1
 set -u
 
-module load QualityControl
+module load O2PDPSuite
 
 if [ "x${calibration_node}" == "x" ]; then
   export calibration_node="epn003-ib:30453"

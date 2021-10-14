@@ -13,6 +13,6 @@ fi
 
 export dir=$3
 
-module load QualityControl
+module load O2PDPSuite
 
 root -b -q -l processDigitsforCosmics.C\(\"$dir\",$thread,$run\)
